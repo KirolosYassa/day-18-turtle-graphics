@@ -6,6 +6,14 @@ screen = Screen()
 colors = ["royal blue", "chartreuse", "forest green", "light salmon", "maroon", "dark slate blue", "medium spring green"]
 
 
+def generate_color():
+    red = r.randint(0, 255)
+    green = r.randint(0, 255)
+    blue = r.randint(0, 255)
+    color = (red, green, blue)
+    return color
+
+
 def turn_right(angle=90):
     turtle.right(angle)
 
@@ -44,10 +52,9 @@ def generate_walks(steps=10):
     for i in range(steps):
         dir = r.choice(directions)
         # speed = r.choice(speed_type)
-        color = r.choice(colors)
-        turtle.color(color)
+        color = generate_color()
+        turtle.pencolor(color)
         # turtle.speed(speed)
-        turtle.speed("fastest")
         turn_right(dir)
         move(50)
 
@@ -55,11 +62,14 @@ def generate_walks(steps=10):
 directions = [0, 90, 180, 270]
 speed_type = ["fastest", "fast", "normal", "slow", "slowest"]
 
+# Setting the screen color-mode
+screen.colormode(255)
 turtle.shape("arrow")
 turtle.pensize(10)
+turtle.speed("fastest")
 
 
-generate_walks(steps=200)
+generate_walks(steps=50)
 
 
 screen.exitonclick()
